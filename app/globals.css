@@ -4,6 +4,9 @@
 
 html {
   line-height: 1.9;
+  scroll-behavior: smooth;
+  scroll-snap-type: mandatory;
+  scroll-snap-type: y mandatory;
 }
 
 .dark {
@@ -17,6 +20,7 @@ html {
 .light {
   body {
     background-color: white;
+    color: black;
   }
 }
 

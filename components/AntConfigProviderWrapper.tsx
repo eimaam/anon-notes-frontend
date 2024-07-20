@@ -26,7 +26,7 @@ export const AntdConfigProvider: FC<IProps> = ({ children }) => {
     <ConfigProvider
       theme={{
         ...antdTheme,
-        algorithm: mounted ? (theme === "dark" ? darkAlgorithm : defaultAlgorithm) : darkAlgorithm,
+        algorithm: mounted ? (theme === "dark" ? darkAlgorithm : defaultAlgorithm) : defaultAlgorithm,
       }}
     >
       {children}

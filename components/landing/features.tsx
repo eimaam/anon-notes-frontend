@@ -79,7 +79,7 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <div className="relative text-white dark:bg-secondary w-full py-12">
+    <div id="features" className="relative scroll-smooth text-white dark:bg-secondary w-full py-12">
       <div className="absolute top-0 left-0 right-0 h-12 bg-white dark:bg-secondary -mt-12 rounded-t-[100%]" />
       <div className="!text-white relative z-10 mx-auto md:w-[55%] lg:w-2/3">
         <div className="text-center">

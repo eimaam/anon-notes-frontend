@@ -17,7 +17,6 @@ const HeroSection = () => {
     const timer = setInterval(() => {
       const newChats:ISampleResponse[] = SAMPLE_RESPONSES.sort(() => 0.5 - Math.random()).slice(0, 5);
       setResponses(newChats);
-      console.log('Updated responses:', newChats); // Debug log
     }, 10000);
 
     return () => clearInterval(timer);
