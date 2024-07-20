@@ -1,3 +1,56 @@
+interface IMenuItem {
+    title: string;
+    icon: string;
+    link: string;
+}
+
+export const MENU_ITEMS = [
+    {
+        title: "Home",
+        icon: "home",
+        link: "/",
+    },
+    {
+        title: "Create Thread",
+        icon: "plus-circle",
+        link: "/create",
+    },
+    {
+        title: "Threads",
+        icon: "message-circle",
+        link: "/threads",
+    },
+    {
+        title: "About",
+        icon: "info",
+        link: "/about"
+    }
+]
+
+export const HOME_MENU_ITEMS: IMenuItem[] = [
+    {
+        title: "Home",
+        icon: "home",
+        link: "/",
+    },
+    {
+        title: "Features",
+        icon: "info",
+        link: "#features",
+    },
+    {
+        title: "About",
+        icon: "info",
+        link: "/about",
+    },
+    {
+        title: "Contact",
+        icon: "phone",
+        link: "/contact",
+    }
+];
+
+
 export const bgColours:string[] = [
     "#EC2A87",
     "#F7C948",

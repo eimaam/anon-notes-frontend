@@ -21,14 +21,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={sora.className}>
-            <Providers>
-        <AntdRegistry>
-          <AntdConfigProvider>
+        <Providers>
+          <AntdRegistry>
+            <AntdConfigProvider>
               {children}
               <Footer />
-          </AntdConfigProvider>
-        </AntdRegistry>
-              </Providers>
+            </AntdConfigProvider>
+          </AntdRegistry>
+        </Providers>
       </body>
     </html>
   );

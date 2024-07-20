@@ -13,18 +13,20 @@ const { defaultAlgorithm, darkAlgorithm } = antdTheme;
 export const AntdConfigProvider: FC<IProps> = ({ children }) => {
   const { theme } = useTheme(); 
 
+
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
     setMounted(true);
-  }, []);
+  }, [theme]);
+
+  if (!mounted || !theme) return null;
 
   return (
     <ConfigProvider
       theme={{
-        // Spread operator might not be directly applicable on the string 'theme' from useTheme
         ...antdTheme,
-        algorithm: mounted ? theme === "dark" ? darkAlgorithm : defaultAlgorithm : darkAlgorithm,
+        algorithm: mounted ? (theme === "dark" ? darkAlgorithm : defaultAlgorithm) : darkAlgorithm,
       }}
     >
       {children}
