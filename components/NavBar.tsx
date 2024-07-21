@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
         anon-notes
       </h1>
 
-      <div className="flex items-center justify-center gap-12 whitespace-nowrap">
+      <div className="flex items-center justify-center md:gap-4 lg:gap-12 whitespace-nowrap">
         {HOME_MENU_ITEMS.map((item, index) => (
           <Link
             key={index}
@@ -43,12 +43,23 @@ const Navbar: React.FC = () => {
       <div className="flex items-center justify-center gap-4">
         <PrimaryButton
           variant="outline"
-          size="3"
+          size={{
+            initial: "2",
+            sm: "2",
+            md: "3",
+          }}
           onClick={() => setLoginModal(true)}
         >
           Login
         </PrimaryButton>
-        <PrimaryButton size="3" onClick={() => setSignupModal(true)}>
+        <PrimaryButton
+          size={{
+            initial: "2",
+            sm: "2",
+            md: "3",
+          }}
+          onClick={() => setSignupModal(true)}
+        >
           Sign Up
         </PrimaryButton>
         <DarkModeSwitch
