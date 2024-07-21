@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.radix-themes {
+  --default-font-family: var(--font-sora) !important;
+}
+
+
 html {
   line-height: 1.9;
   scroll-behavior: smooth;
