@@ -8,11 +8,10 @@ import { AntdConfigProvider } from "@/components/AntConfigProviderWrapper";
 import Footer from "@/components/footer";
 import { Theme } from "@radix-ui/themes";
 
-const sora = Sora({ 
+const sora = Sora({
   subsets: ["latin"],
   display: "swap",
-  variable: '--font-sora',
-
+  variable: "--font-sora",
 });
 
 export const metadata: Metadata = {
@@ -29,10 +28,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={sora.variable}>
         <NextThemesProvider>
-        <Theme accentColor="gray" grayColor="slate">
-            {children}
-            <Footer />
-          </Theme>
+          <AntdRegistry>
+            <AntdConfigProvider>
+              <Theme accentColor="gray" grayColor="slate">
+                {children}
+                <Footer />
+              </Theme>
+            </AntdConfigProvider>
+          </AntdRegistry>
         </NextThemesProvider>
       </body>
     </html>
