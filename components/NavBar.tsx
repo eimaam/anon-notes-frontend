@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import { Layout, Menu, Button, Space } from "antd";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { useTheme } from "next-themes";
 import { HOME_MENU_ITEMS } from "@/lib/constants";
 import Link from "next/link";
+import { Button, Theme } from "@radix-ui/themes";
+import PrimaryButton from "./ui/button";
 
-const { Header } = Layout;
 
 const Navbar: React.FC = () => {
   const { theme, setTheme } = useTheme();
@@ -22,8 +22,8 @@ const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <header className="!flex scroll-smooth items-center justify-between !p-3 rounded-2xl !text-base !w-[70%] !bg-white dark:!bg-primary dark:!border dark:border-white text-white mt-8 left-0 right-0 z-50 mx-auto">
-      <h1 className=" text-xl min-w-max font-extrabold text-black dark:text-white">
+    <header className="sm:!hidden w-[90%] md:w-[80%] lg:!w-[70%] !flex scroll-smooth items-center justify-between !p-3 rounded-2xl !text-base !bg-white dark:!bg-primary dark:!border dark:border-white text-white mt-8 left-0 right-0 z-50 mx-auto">
+      <h1 className="md:text-lg lg:text-xl min-w-max font-extrabold text-black dark:text-white">
         anon-notes
       </h1>
 
@@ -39,12 +39,12 @@ const Navbar: React.FC = () => {
         ))}
       </div>
       <div className="flex items-center justify-center gap-4">
-        <Button type="default" size="large">
+        <PrimaryButton variant="outline" size="3">
           Login
-        </Button>
-        <Button type="primary" size="large">
+        </PrimaryButton>
+        <PrimaryButton size="3">
           Sign Up
-        </Button>
+        </PrimaryButton>
         <DarkModeSwitch
           size={18}
           onChange={toggleDarkMode}

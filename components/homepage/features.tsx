@@ -1,6 +1,5 @@
 "use client"
 import React, { FC } from "react";
-import { Card, Typography } from "antd";
 import {
   ShieldCheck,
   Star,
@@ -12,8 +11,9 @@ import {
   Lock,
   ThumbsUp,
 } from "lucide-react";
+import { Flex, Heading, Text } from "@radix-ui/themes";
+import { motion, useAnimation, useInView } from "framer-motion";
 
-const { Title, Text } = Typography;
 
 interface IFeature {
   icon: React.ReactNode;
@@ -79,34 +79,54 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <div id="features" className="relative scroll-smooth text-white dark:bg-secondary w-full py-12">
-      <div className="absolute top-0 left-0 right-0 h-12 bg-white dark:bg-secondary -mt-12 rounded-t-[100%]" />
-      <div className="!text-white relative z-10 mx-auto md:w-[55%] lg:w-2/3">
-        <div className="text-center">
-          <Title className="md:!text-5xl font-extrabold">
+    <div id="features" className="relative scroll-smooth dark:bg-secondary w-full py-12 mb-24">
+      <div className="absolute top-0 left-0 right-0 h-16 bg-white dark:bg-secondary -mt-12 rounded-t-[100%] !border-none" />
+      <div className="relative z-10 mx-auto md:w-[85%] lg:w-2/3">
+        <Flex gap="3" direction="column" className="text-center">
+          <Heading size="8" className="!text-xl md:!text-4xl lg:!text-5xl font-extrabold">
             Coolest Features Ever
-          </Title>
+          </Heading>
           <Text>
             Discover the endless fun and excitement with our unique app
             features. <br /> Start your adventure now!
           </Text>
-        </div>
-        <div className="!text-white mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        </Flex>
+        <div className="!text-white mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 !justify-center !items-center">
           {features.map((feature, index) => (
             <FeatureCard key={index} {...feature} />
           ))}
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-white dark:bg-secondary -mb-12 rounded-b-[100%] !border-none" />
     </div>
   );
 };
 
+
 const FeatureCard: FC<IFeature> = ({ icon, title, description }) => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, {
+    margin: "0px 100px -50px 0px"
+  });
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
   return (
-    <div className="w-[300px] h-[320px] dark:!bg-primary !bg-secondary !text-white !border-none !rounded-2xl !shadow-xl !grid !grid-rows-2 !gap-1 p-6">
+    <div
+      ref={ref}
+      style={{
+        transform: isInView ? "none" : "translateX(-200px)",
+        opacity: isInView ? 1 : 0,
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+      }}
+      className=" w-[300px] h-[320px] dark:bg-primary bg-secondary text-white border-none rounded-2xl shadow-xl grid grid-rows-2 gap-1 p-6 mx-auto"
+    >
       <div className="grid grid-rows-2 gap-4 items-center">
         {icon}
-        <Title level={4}>{title}</Title>
+        <Heading size="4">{title}</Heading>
       </div>
       <Text className="text-sm mt-4">{description}</Text>
     </div>
