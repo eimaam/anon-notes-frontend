@@ -23,9 +23,9 @@ const ChatBubble: FC<IProps> = ({ thread, response, index, bgColor }) => {
     const position = random_positions[index % random_positions.length];
 
     // Determine if the position is on the left to adjust the rounded corner
-    const roundedCorner = position.includes("left") ? "rounded-tr-none" : "rounded-br-none";
+    const roundedCorner = position.includes("left") ? "!rounded-tr-none" : "!rounded-br-none";
 
-
+console.log({ roundedCorner })
     // Animation variants for Framer Motion
     const bubbleVariants = {
         hidden: { opacity: 0, scale: 0.8 },
