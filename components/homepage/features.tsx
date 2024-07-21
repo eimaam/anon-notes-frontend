@@ -81,7 +81,7 @@ const FeaturesSection = () => {
   return (
     <div id="features" className="relative scroll-smooth dark:bg-secondary w-full py-12 mb-24">
       <div className="absolute top-0 left-0 right-0 h-16 bg-white dark:bg-secondary -mt-12 rounded-t-[100%] !border-none" />
-      <div className="relative z-10 mx-auto md:w-[85%] lg:w-2/3">
+      <div className="relative z-10 mx-auto md:w-[85%] lg:w-3/4">
         <Flex gap="3" direction="column" className="text-center">
           <Heading size="8" className="!text-xl md:!text-4xl lg:!text-5xl font-extrabold">
             Coolest Features Ever

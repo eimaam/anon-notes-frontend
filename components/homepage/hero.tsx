@@ -1,22 +1,30 @@
-import Navbar from '@/components/NavBar';
-import { motion } from 'framer-motion';
-import ChatBubble from '../ui/chat-bubble';
-import { bgColours, ISampleResponse, SAMPLE_RESPONSES } from '@/lib/constants';
-import React, { useEffect, useState } from 'react';
-import { ChevronRight } from 'lucide-react';
+import Navbar from "@/components/NavBar";
+import { motion } from "framer-motion";
+import ChatBubble from "../ui/chat-bubble";
+import { bgColours, ISampleResponse, SAMPLE_RESPONSES } from "@/lib/constants";
+import React, { useEffect, useState } from "react";
+import { ChevronRight } from "lucide-react";
+import SignUpModal from "../signup-modal";
 
 const HeroSection = () => {
   const [responses, setResponses] = useState<ISampleResponse[]>([]);
   const [backgroundColours, setBackgroundColours] = useState<string[]>([]);
+  const [showSignupModal, setShowSignupModal] = useState<boolean>(false);
 
   useEffect(() => {
     const shuffleResponses = () => {
-      const shuffledChats = SAMPLE_RESPONSES.sort(() => 0.5 - Math.random()).slice(0, 5);
-      const shuffledBgColors = bgColours.sort(() => 0.5 - Math.random()).slice(0, 5);
+      const shuffledChats = SAMPLE_RESPONSES.sort(
+        () => 0.5 - Math.random()
+      ).slice(0, 5);
+      const shuffledBgColors = bgColours
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 5);
 
-      setResponses(shuffledChats.map((chat, index) => ({
-        ...chat,
-      })));
+      setResponses(
+        shuffledChats.map((chat, index) => ({
+          ...chat,
+        }))
+      );
       setBackgroundColours(shuffledBgColors);
     };
 
@@ -54,7 +62,8 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 1 }}
             >
-              Create and share anonymous notes or messages with friends, family, or the public. <br /> Dive into the fun today!
+              Create and share anonymous notes or messages with friends, family,
+              or the public. <br /> Dive into the fun today!
             </motion.p>
           </motion.div>
           <motion.div
@@ -63,16 +72,30 @@ const HeroSection = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 2, duration: 1 }}
           >
-            <button title="Create a Thread & Get Responses" className="flex items-center justify-center shadow md:shadow-lg whitespace-nowrap w-full hover:animate-pulse transform translate-x-0 hover:bg-white dark:hover:text-white text-white hover:text-primary px-5 md:py-3 lg:py-6 lg:px-10 bg-[#710DF2] dark:bg-secondary border-2 md:border-3 lg:border-6 border-[#FED000] rounded-[40px] md:!rounded-[120px] lg:rounded-[200px]">
-              Get Started <ChevronRight size={50} className="animate-pulse text-light-gray sm:hidden" />
+            <button
+              onClick={() => setShowSignupModal(true)}
+              title="Create a Thread & Get Responses"
+              className="flex items-center justify-center shadow md:shadow-lg whitespace-nowrap w-full hover:animate-pulse transform translate-x-0 hover:bg-white dark:hover:text-white text-white hover:text-primary px-5 md:py-3 lg:py-6 lg:px-10 bg-[#710DF2] dark:bg-secondary border-2 md:border-3 lg:border-6 border-[#FED000] rounded-[40px] md:!rounded-[120px] lg:rounded-[200px]"
+            >
+              Get Started{" "}
+              <ChevronRight
+                size={50}
+                className="animate-pulse text-light-gray sm:hidden"
+              />
             </button>
           </motion.div>
         </div>
-
-          {responses.map((chat, index) => (
-            <ChatBubble key={chat.response} index={index} thread={chat.thread} response={chat.response} bgColor={backgroundColours[index]} />
-          ))}
+        {responses.map((chat, index) => (
+          <ChatBubble
+            key={chat.response}
+            index={index}
+            thread={chat.thread}
+            response={chat.response}
+            bgColor={backgroundColours[index]}
+          />
+        ))}
       </div>
+      <SignUpModal open={showSignupModal} setOpen={setShowSignupModal} />
     </div>
   );
 };

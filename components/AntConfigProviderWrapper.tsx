@@ -8,7 +8,7 @@ interface IProps {
     children: React.ReactNode;
 }
 
-const { defaultAlgorithm, darkAlgorithm } = antdTheme; 
+const { defaultAlgorithm, darkAlgorithm, compactAlgorithm } = antdTheme; 
 
 export const AntdConfigProvider: FC<IProps> = ({ children }) => {
   const { theme } = useTheme(); 
@@ -26,6 +26,27 @@ export const AntdConfigProvider: FC<IProps> = ({ children }) => {
     <ConfigProvider
       theme={{
         ...antdTheme,
+        token: {
+          colorPrimary: theme === "dark" ? "#fff" : "#000",
+          colorText: theme === "dark" ? "#fff" : "#000",
+          colorLink: theme === "dark" ? "#fff" : "#000",
+        },
+        components: {
+          Button: {
+            algorithm: true,
+            colorPrimary: theme === "dark" ? "#fff" : "#000",
+            primaryColor: theme === "dark" ? "#000" : "#fff",
+            defaultHoverColor: theme === "dark" ? "#000" : "#fff",
+            defaultHoverBg: theme === "dark" ? "#fff" : "#000",
+          },
+          Input: {
+            paddingBlock: 10
+          },
+          Modal: {
+            algorithm: true,
+            colorBgBlur: theme === "dark" ? "rgba(0, 0, 0, 0.9)" : "rgba(255, 255, 255, 0.9)"
+          },
+        },
         algorithm: mounted ? (theme === "dark" ? darkAlgorithm : defaultAlgorithm) : defaultAlgorithm,
       }}
     >
