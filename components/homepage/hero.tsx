@@ -7,6 +7,7 @@ import { ChevronRight } from 'lucide-react';
 
 const HeroSection = () => {
   const [responses, setResponses] = useState<ISampleResponse[]>([]);
+  const [backgroundColours, setBackgroundColours] = useState<string[]>([]);
 
   useEffect(() => {
     const shuffleResponses = () => {
@@ -15,8 +16,8 @@ const HeroSection = () => {
 
       setResponses(shuffledChats.map((chat, index) => ({
         ...chat,
-        bgColor: shuffledBgColors[index],
       })));
+      setBackgroundColours(shuffledBgColors);
     };
 
     shuffleResponses();
@@ -69,7 +70,7 @@ const HeroSection = () => {
         </div>
 
           {responses.map((chat, index) => (
-            <ChatBubble key={chat.response} index={index} thread={chat.thread} response={chat.response} bgColor={chat.bgColor} />
+            <ChatBubble key={chat.response} index={index} thread={chat.thread} response={chat.response} bgColor={backgroundColours[index]} />
           ))}
       </div>
     </div>
